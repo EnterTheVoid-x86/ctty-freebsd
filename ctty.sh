@@ -112,7 +112,7 @@ list_schemes() {
 # lists all the valid fonts we can work with and strip the path off them to just the parts the user has 
 # to type in
 print_fonts() {
-	ls /usr/share/kbd/consolefonts/* | grep ".psfu.gz" | sed "s/\/usr\/share\/kbd\/consolefonts\///"
+	ls /usr/share/vt/fonts* | grep ".fnt" | sed "s/\/usr\/share\/vt\/fonts\///"
 }
 
 #Checks if the given scheme is available, if not it returns 0
