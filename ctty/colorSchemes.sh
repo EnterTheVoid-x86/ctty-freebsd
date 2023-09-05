@@ -80,6 +80,29 @@ color_scheme_dracula() {
 	light_white=fg
 }
 
+color_scheme_nord() {
+	fg=eceff4
+	bg=2e3440
+
+	dark_black=$bg
+	dark_red=bf616a
+	dark_green=a3be8c
+	dark_yellow=ebcb8b
+	dark_blue=5e81ac
+	dark_magenta=b48ead
+	dark_cyan=88c0d0
+	dark_white=d8dee9
+
+	light_black=434c5e
+	light_red=bf616a
+	light_green=a3be8c
+	light_yellow=ebcb8b
+	light_blue=5e81ac
+	light_magenta=b48ead
+	light_cyan=88c0d0
+	light_white=2e3440
+}
+
 #Note: Solarized colors will be off..
 #Since we cannot define fore- and background differently.
 #I still hope that it looks pleasant to the users who like solarized
