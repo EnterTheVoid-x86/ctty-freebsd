@@ -1,6 +1,6 @@
 #!/bin/sh
 
-version="0.3"
+version="0.3-fbsd"
 
 #set the inital config directory 
 config_dir="$HOME/.config/ctty"
@@ -225,7 +225,7 @@ set_font() {
 	if [ -n $device ]; then
 		setfont -C $device
 	fi
-	setfont /usr/shar/kbd/console/fonts/$arg_f
+	vidcontrol -f $arg_f
 }
 
 while getopts "c:f:d:s:hlixpv" opt
@@ -257,63 +257,13 @@ if [ $OPTIND -eq 1 ]; then
 fi
 
 set_font() {
-	if [ -c "$device" ]; then
-		#Doing it this way for some reason requires sudo even if the user is part of the tty group
-		setfont -C $device /usr/share/kbd/consolefonts/$arg_f
-	elif [ "$TERM" = "linux" ]; then
-		#Sets the current console doesn't need sudo but have to be in the tty
-		setfont /usr/share/kbd/consolefonts/$arg_f
-	else
-		echo "Unable to set fonts on a graphical console please pass a tty through -d option or do this command on a tty"
-	fi	
+	vidcontrol -f $arg_f
 }
 
 
 set_colour() {
-	##CHeck to make sure we are on a linux tty
-	if [ "$TERM" = "linux" ]; then
-		printf %b "\033]P0$dark_black"	\
-			"\033]P7$dark_white"	\
-			"\033]P1$dark_red"	\
-			"\033]P2$dark_green"	\
-			"\033]P3$dark_yellow" 	\
-			"\033]P4$dark_blue" 	\
-			"\033]P5$dark_magenta"	\
-			"\033]P6$dark_cyan"	\
-			"\033]P8$light_black" 	\
-			"\033]P9$light_red"	\
-			"\033]Pa$light_green" 	\
-			"\033]Pb$light_yellow" 	\
-			"\033]Pc$light_blue"	\
-			"\033]Pd$light_magenta"	\
-			"\033]Pe$light_cyan"	\
-			"\033]Pf$light_white"
-	elif [ -c "$device" ]; then 
-		#if we aren't on a tty right now check if the user pass a -d arg 
-		#that is a speacial charcater device from my experience requires
-		#A: user to be logged into tty or the user to be part of the tty group
-		#B: Or sudo can be used but tty group is preffred.
-		printf %b "\033]P0$dark_black"	\
-			"\033]P7$dark_white"	\
-			"\033]P1$dark_red"	\
-			"\033]P2$dark_green"	\
-			"\033]P3$dark_yellow" 	\
-			"\033]P4$dark_blue" 	\
-			"\033]P5$dark_magenta"	\
-			"\033]P6$dark_cyan"	\
-			"\033]P8$light_black" 	\
-			"\033]P9$light_red"	\
-			"\033]Pa$light_green" 	\
-			"\033]Pb$light_yellow" 	\
-			"\033]Pc$light_blue"	\
-			"\033]Pd$light_magenta"	\
-			"\033]Pe$light_cyan"	\
-			"\033]Pf$light_white" > $device
-	else 
-		#Else print an error
-		echo "Unable to set this consoles color scheme. Please make sure this is is a tty or using the -d option"
-	fi
-	exit 0
+	echo "Please add this to your /boot/loader.conf:"
+ 	echo -e "# black\nkern.vt.color.0.rgb='${dark_black}'\n# dark red\nkern.vt.color.1.rgb='${dark_red}'\n# dark green\nkern.vt.color.2.rgb='${dark_green}'\n# dark yellow\nkern.vt.color.3.rgb='${dark_yellow}'\n# dark blue\nkern.vt.color.4.rgb='${dark_blue}'\n# dark magenta\nkern.vt.color.5.rgb='${dark_magenta}'\n# dark cyan\nkern.vt.color.6.rgb='${dark_cyan}'\n# light gray\nkern.vt.color.7.rgb='${light_white}'\n# dark gray\nkern.vt.color.8.rgb='${dark_white}'\n# light red\nkern.vt.color.9.rgb='${light_red}'\n# light green\nkern.vt.color.10.rgb='${light_green}'\n# light yellow\nkern.vt.color.11.rgb='${light_yellow}'\n# light blue\nkern.vt.color.12.rgb='${light_blue}'\n# light magenta\nkern.vt.color.13.rgb='${light_magenta}'\n# light cyan\nkern.vt.color.14.rgb='${light_cyan}'\n# white\nkern.vt.color.15.rgb='#FFFFFF'"
 }
 
 if [ -n $arg_f ] && [ $(check_font $arg_f) -eq 1 ]; then 
