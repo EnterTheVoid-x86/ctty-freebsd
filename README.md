@@ -39,6 +39,4 @@ chmod +x ctty.sh
 You can install by running ``sudo make install``.
 
 ## Other plans
-
-The script at its current state is only able to change the color of any given terminal and it needs to be invoked everytime after a reboot because it is not persistent.
-My plans are making it somewhat persistent between reboots and also implementing the ability to change the default TTY font.
+I should mention that font changes are not permanent, however you can make a simple service that runs the script on every tty every boot.
