@@ -31,10 +31,12 @@ Dracula scheme
 
 Clone the repo, make the script executable and run it from any TTY
 ```
-git clone https://github.com/Stargirl-chan/ctty.git
-cd ctty
+git clone https://github.com/EnterTheVoid-x86/ctty-freebsd.git
+cd ctty-freebsd
 chmod +x ctty.sh
 ```
+
+You can install by running ``sudo make install``.
 
 ## Other plans
 
