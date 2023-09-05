@@ -8,7 +8,7 @@ Currently there are only 4 schemes to choose from and the ability to parse the X
 
 Contributions are also welcomed c:
 
-The script should work on any Linux system, BSD is untested ~~but I'm 80% sure that it should work just fine.~~ nope
+The script should work on any BSD system, Linux is untested ~~but I'm 80% sure that it should work just fine.~~ nope
 
 Note: I should again mention that it will only work in TTY, there is no way it will work in any graphical terminal emulator.
 
