@@ -106,3 +106,5 @@ color_scheme_nord() {
 #Note: Solarized colors will be off..
 #Since we cannot define fore- and background differently.
 #I still hope that it looks pleasant to the users who like solarized
+
+#Note: Since Nord doesn't have a light varient, I had to reuse the dark colors. Hopefully nord fans wont mind
