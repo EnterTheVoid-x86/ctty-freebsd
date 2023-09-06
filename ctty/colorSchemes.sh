@@ -100,7 +100,7 @@ color_scheme_nord() {
 	light_blue=5e81ac
 	light_magenta=b48ead
 	light_cyan=88c0d0
-	light_white=2e3440
+	light_white=eceff4
 }
 
 #Note: Solarized colors will be off..
